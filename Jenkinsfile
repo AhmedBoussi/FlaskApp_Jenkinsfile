@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        HA="
         DOCKER_HUB_REPO = "boussiahmed/flask_app"
         registryCredential = 'dockerhub_id'
         CONTAINER_NAME = "flask-container"
