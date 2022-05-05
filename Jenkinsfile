@@ -16,17 +16,19 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                //  Building new image
-                sh 'docker.withRegistry( '', registryCredential ) image build -t $DOCKER_HUB_REPO:latest .'
-                sh 'docker.withRegistry( '', registryCredential ) image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
+     stage('Building our image') { 
 
-                //  Pushing Image to Repository
-                sh 'docker.withRegistry( '', registryCredential ) push boussiahmed/flask_app:$BUILD_NUMBER'
-                sh 'docker.withRegistry( '', registryCredential ) push boussiahmed/flask_app:latest'
-                
-                echo "Image built and pushed to repository"
-            }
+                steps { 
+
+                 script { 
+
+                      dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+
+                      }
+
+                 } 
+
+             }
         }
         stage('Deploy') {
             steps {
