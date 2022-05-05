@@ -11,7 +11,7 @@
 # Inherit from the Python Docker image
 FROM python:3.7-slim
 # Install the Flask package via pip
-RUN pip install requirements.txt
+RUN pip install -r  requirements.txt
 # Copy the source code to app folder
 COPY ./app.py /app/
 # Change the working directory
